@@ -1,0 +1,49 @@
+site_name: Computación en la Nube y Virtualización
+
+nav:
+  - INICIO: index.md
+  - UD1 -  Elementos clave de Infraestructura de Red: unidad1/ud1.md
+  - UD2 -  Cloud Computing: unidad2/ud2.md
+  - UD3 -  Virtualización: unidad3/ud3.md
+  - UD4 -  Introducción a Docker: unidad4/ud4.md
+
+theme:
+  name: material
+  features:
+    - content.code.copy
+    - content.tabs.link
+  navigation_depth: 3
+  palette:
+    # Palette toggle for automatic mode
+    - media: "(prefers-color-scheme)"
+      toggle:
+        icon: material/brightness-auto
+        name: Switch to light mode
+
+    # Palette toggle for light mode
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: purple
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+
+    # Palette toggle for dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: purple
+      toggle:
+        icon: material/brightness-4
+        name: Switch to automatic mode
+
+markdown_extensions:
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.superfences
+  - pymdownx.emoji
+  - toc:
+      toc_depth: 3
