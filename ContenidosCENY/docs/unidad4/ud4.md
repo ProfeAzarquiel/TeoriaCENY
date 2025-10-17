@@ -78,7 +78,7 @@
 
 * Para ver todos los subcomandos con referidos a contenedores, podemos ejecutar:
 ```bash
-docker docker run -d --name my-apache-app --mount type=volume,src=miweb,dst=/usr/local/apache2/htdocs -p 8080:80 httpd:2.4container
+docker container
 ```
 
 * Como mínimo, para crear un contenedor debemos indicarle una imagen. Esa imagen debe estar en nuestro REGISTRO (repositorio) local, si no es así, la buscara en el REGISTRO público (**Docker Hub**) y la descargará. Por ejemplo, existe la imagen pública "hello-world" que ejecuta un programa Hello World en el contenedor.
@@ -90,36 +90,36 @@ docker docker run -d --name my-apache-app --mount type=volume,src=miweb,dst=/usr
 * **COMANDOS DE GESTIÓN BÁSICA:**
 * Crear y ejecutar un contenedor:
 ```bash
-docker docker run -d --name my-apache-app --mount type=volume,src=miweb,dst=/usr/local/apache2/htdocs -p 8080:80 httpd:2.4run hello-world
+docker run hello-world
 ```
 * Crear un contenedor sin ejecutarlo:
 ```bash
-docker docker run -d --name my-apache-app --mount type=volume,src=miweb,dst=/usr/local/apache2/htdocs -p 8080:80 httpd:2.4create hello-world
+docker create hello-world
 ```
 * Iniciar un contenedor ya creado:
 ```bash
-docker docker run -d --name my-apache-app --mount type=volume,src=miweb,dst=/usr/local/apache2/htdocs -p 8080:80 httpd:2.4start -a micontendor1
+docker start -a micontendor1
 # La opción -a sirve para ver la salida que genera la ejecución de ese contenedor, en este caso el mensaje "Hello form Docker!"
 ```
 * Pausar la ejecución de un contenedor:
 ```bash
-docker docker run -d --name my-apache-app --mount type=volume,src=miweb,dst=/usr/local/apache2/htdocs -p 8080:80 httpd:2.4pause micontenedor
+docker pause micontenedor
 ```
 * Finalizar la ejecución de un contenedor:
 ```bash
-docker docker run -d --name my-apache-app --mount type=volume,src=miweb,dst=/usr/local/apache2/htdocs -p 8080:80 httpd:2.4stop micontenedor
+docker stop micontenedor
 ```
 * Reiniciar la ejecución de un contenedor:
 ```bash
-docker docker run -d --name my-apache-app --mount type=volume,src=miweb,dst=/usr/local/apache2/htdocs -p 8080:80 httpd:2.4restart micontenedor
+docker restart micontenedor
 ```
 * Renombrar un contenedor ya creado:
 ```bash
-docker docker run -d --name my-apache-app --mount type=volume,src=miweb,dst=/usr/local/apache2/htdocs -p 8080:80 httpd:2.4rename micontenedor nuevo_nombre
+docker rename micontenedor nuevo_nombre
 ```
 * Borrar un contenedor:
 ```bash
-    #Medocker run -d --name my-apache-app --mount type=volume,src=miweb,dst=/usr/local/apache2/htdocs -p 8080:80 httpd:2.4diante su ID:
+    #Mediante su ID:
     docker rm 64f44087771a
     # Mediante su nombre
     docker rm micontenedor1
@@ -129,60 +129,60 @@ docker docker run -d --name my-apache-app --mount type=volume,src=miweb,dst=/usr
 ```
 * Enlazar con la entrada/salida de un contenedor interactivo en ejecución:
 ```bash
-docker docker run -d --name my-apache-app --mount type=volume,src=miweb,dst=/usr/local/apache2/htdocs -p 8080:80 httpd:2.4attach micontenedor
+docker attach micontenedor
 ```
 * Mostrar contenedores en ejecución:
 ```bash
-docker docker run -d --name my-apache-app --mount type=volume,src=miweb,dst=/usr/local/apache2/htdocs -p 8080:80 httpd:2.4ps
+docker ps
 ```
 * Mostrar contenedores creados:
 ```bash
-docker docker run -d --name my-apache-app --mount type=volume,src=miweb,dst=/usr/local/apache2/htdocs -p 8080:80 httpd:2.4ps -a
+docker ps -a
 ```
 * Mostrar imágenes de nuestro REGISTRO local:
 ```bash
-docker docker run -d --name my-apache-app --mount type=volume,src=miweb,dst=/usr/local/apache2/htdocs -p 8080:80 httpd:2.4images
+docker images
 ```
 * Descargar una imagen del REGISTRO público:
 ```bash
-#Por ejdocker run -d --name my-apache-app --mount type=volume,src=miweb,dst=/usr/local/apache2/htdocs -p 8080:80 httpd:2.4emplo, descargar la imagen del SO Ubuntu
+#Por ejemplo, descargar la imagen del SO Ubuntu
 docker pull ubuntu
 ```
 * Visualizar los pasos que se dan cuando creamos o ejecutamos contenedores:
 ```bash
-#Dejamodocker run -d --name my-apache-app --mount type=volume,src=miweb,dst=/usr/local/apache2/htdocs -p 8080:80 httpd:2.4s lanzado este comando y se nos mostrarán logs detallados de todos las acciones que ejecutemos despues:
+#Dejamos lanzado este comando y se nos mostrarán logs detallados de todos las acciones que ejecutemos despues:
 docker events
 ```
 
 * **OPCIONES COMUNES SOBRE LOS COMANDOS BÁSICOS:**
 * Indicar nombre del contenedor al crearlo:
 ```bash
-docker docker run -d --name my-apache-app --mount type=volume,src=miweb,dst=/usr/local/apache2/htdocs -p 8080:80 httpd:2.4run --name contenedor1 ubuntu
+docker run --name contenedor1 ubuntu
 ```
 * Para especificar que comando o comandos queremos que ejecute nuestro contenedor, se indican despues de la imagen:
 ```bash
-docker docker run -d --name my-apache-app --mount type=volume,src=miweb,dst=/usr/local/apache2/htdocs -p 8080:80 httpd:2.4run --name contenedor1 ubuntu echo "Hola Mundo"
+docker run --name contenedor1 ubuntu echo "Hola Mundo"
 ```
 
 * Indicar hostname del contenedor al crearlo:
 ```bash
-#Aunquedocker run -d --name my-apache-app --mount type=volume,src=miweb,dst=/usr/local/apache2/htdocs -p 8080:80 httpd:2.4 no es muy común utilizarlo, ya que los contenedores ofrecen un servicio y por lo general no nos conectamos a ellos. Es decir, no suelen tratarse como máquinas virtuales tradicionales a las que solemos conectarnos para realizar distintas tareas
+#Aunque no es muy común utilizarlo, ya que los contenedores ofrecen un servicio y por lo general no nos conectamos a ellos. Es decir, no suelen tratarse como máquinas virtuales tradicionales a las que solemos conectarnos para realizar distintas tareas
 docker -h contenedor_ubuntu
 ```
 
 * Crear una sesión de terminal interactivo al crear un contendor:
 ```bash
-docker docker run -d --name my-apache-app --mount type=volume,src=miweb,dst=/usr/local/apache2/htdocs -p 8080:80 httpd:2.4run -it --name contenedor2 -h cont2 ubuntu bash
+docker run -it --name contenedor2 -h cont2 ubuntu bash
 ```
 
 * Borrar el contenedor despues de que termine su ejecución:
 ```bash
-docker docker run -d --name my-apache-app --mount type=volume,src=miweb,dst=/usr/local/apache2/htdocs -p 8080:80 httpd:2.4run -it --rm --name contenedor3 -h cont3 ubuntu top
+docker run -it --rm --name contenedor3 -h cont3 ubuntu top
 ```
 
 * **CONTENEDORES DEMONIO:** ejecutan procesos indefinidamente y de forma desatendida (no veremos su salida). Ejemplo:
 ```bash
-# La opdocker run -d --name my-apache-app --mount type=volume,src=miweb,dst=/usr/local/apache2/htdocs -p 8080:80 httpd:2.4ción -d indica que la ejecución es desatendida, es decir, no veremos su salida. Y la opción -c, permite especificar entre comillas, un listado de comandos para ejecutar:
+# La opción -d indica que la ejecución es desatendida, es decir, no veremos su salida. Y la opción -c, permite especificar entre comillas, un listado de comandos para ejecutar:
 docker run -d --name micontenedor ubuntu bash -c "while true; do echo hello world; sleep 1; done"
 
 # Para ver la salida generada por un contenedor demonio
@@ -199,7 +199,7 @@ docker rm micontenedor
 ```
 * **CREACIÓN DE VARIABLES DE ENTORNO ASOCIADAS A UN CONTENEDOR:** Las variables de entorno son del tipo "clave:valor", y podemos crearlas al arrancar un contenedor. En el siguiente ejemplo, creamos la variable "USUARIO" y le asignamos el valor "prueba":
 ```bash
-#Crea udocker run -d --name my-apache-app --mount type=volume,src=miweb,dst=/usr/local/apache2/htdocs -p 8080:80 httpd:2.4n contenedor interactivo (-it) con la imagen de ubuntu y define una variable de entorno (-e) para ese contenedor:
+#Crea un contenedor interactivo (-it) con la imagen de ubuntu y define una variable de entorno (-e) para ese contenedor:
 docker run -it --name micontenedor -e USUARIO=prueba ubuntu
 ```
 * Para comprobar que realmente se ha creado la variable, dentro del BASH del contenedor escribimos **`env`** y veremos todas las variables d entorno.
@@ -208,7 +208,7 @@ docker run -it --name micontenedor -e USUARIO=prueba ubuntu
 * **COMANDOS DE GESTIÓN MÁS AVANZADOS:**
 Ejecutar un comando dentro de un contenedor en ejecución:
 ```bash
-docker docker run -d --name my-apache-app --mount type=volume,src=miweb,dst=/usr/local/apache2/htdocs -p 8080:80 httpd:2.4 exec micontenedor ls
+docker  exec micontenedor ls
 #o
 docker exec micontenedor cat datos.txt
 ```
@@ -220,7 +220,7 @@ docker exec -it some-mariadb bash -c 'mysql -u root -p$MARIADB_ROOT_PASSWORD'
 
 Copiar ficheros del Host al Contenedor o viceversa:
 ```bash
-#Para cdocker run -d --name my-apache-app --mount type=volume,src=miweb,dst=/usr/local/apache2/htdocs -p 8080:80 httpd:2.4opar del host al contenedor, se especifica el nombre del contenedor y el directorio donde lo queremos copiar
+#Para copar del host al contenedor, se especifica el nombre del contenedor y el directorio donde lo queremos copiar
 docker cp mifichero.txt micontenedor:/
 
 #Para copiar del contenedor al host, debemos especificar el directorio destino, en este caso "." para indicar el directorio actual
@@ -229,18 +229,18 @@ docker cp micontenedor:/hora.txt .
 
 Visualizar los procesos que se estan ejecutando dentro de un contenedor:
 ```bash
-docker docker run -d --name my-apache-app --mount type=volume,src=miweb,dst=/usr/local/apache2/htdocs -p 8080:80 httpd:2.4top micontenedor
+docker top micontenedor
 ```
 
 Obtener información detallada de un contenedor:
 ```bash
-# Muestdocker run -d --name my-apache-app --mount type=volume,src=miweb,dst=/usr/local/apache2/htdocs -p 8080:80 httpd:2.4ra en formato JSON el identificador, puertos abiertos, almacenamiento, tamaño, configuración de red, comandos, varibles de entorno... 
+# Muestra en formato JSON el identificador, puertos abiertos, almacenamiento, tamaño, configuración de red, comandos, varibles de entorno... 
 docker inspect micontenedor
 ```
 
 Podemos formatear la salida del comando anterior, para que solo muestre ciertos parámetros:
 ```bash
-# Para docker run -d --name my-apache-app --mount type=volume,src=miweb,dst=/usr/local/apache2/htdocs -p 8080:80 httpd:2.4mostrar el ID del contenedor
+# Para mostrar el ID del contenedor
 docker inspect --format='{{.Id}}' micontenedor
 
 #Para mostrar todas las variables de entorno:
@@ -287,13 +287,13 @@ Por lo tanto, en este caso para acceder al servidor Web que nos proporcionará e
 Sería como si definieramos una regla de NAT en el Firewall del anfitrión.
 
 ```bash
-# httpddocker run -d --name my-apache-app --mount type=volume,src=miweb,dst=/usr/local/apache2/htdocs -p 8080:80 httpd:2.4:2.4 es la imagen oficial del Servidor Web APACHE
+# httpd:2.4 es la imagen oficial del Servidor Web APACHE
 docker run -d --name my-apache-app -p 8080:80 httpd:2.4
 ```
 
 Para ver las redirecciones o nateos que se están haciendo en nuestro contenedor:
 ```bash
-# Muestdocker run -d --name my-apache-app --mount type=volume,src=miweb,dst=/usr/local/apache2/htdocs -p 8080:80 httpd:2.4ra tanto IPv4 como IPv6
+# Muestra tanto IPv4 como IPv6
 docker port my-apache-app
 ```
 
@@ -321,7 +321,7 @@ Las imagenes suelen partir de una capa base, que contiene los directorios y arch
 
 Si tengo varias imágenes que tengan la misma capa base, solo se almacenará una vez en nuestra máquina y será compartida por todas esas imágenes. Esto podemos verlo con el comando:
 ```bash
-# Nos ddocker run -d --name my-apache-app --mount type=volume,src=miweb,dst=/usr/local/apache2/htdocs -p 8080:80 httpd:2.4a la información del almacenamiento utilizado por docker
+# Nos da la información del almacenamiento utilizado por docker
 docker system df -v
 ```
 Esto por ejemplo tambien ocurre cuando creamos contenedores con diferentes versiones de una misma imagen, muchas de sus capas, son compartidas.
@@ -330,7 +330,7 @@ Cuando creamos un contenedor, usa el FS de la imagen en `solo lectura`. Por tant
 
 Esto hace que al crear un contenedor, su tamaño sea mínimo Esto podemos verlo con el comando:
 ```bash
-# La opdocker run -d --name my-apache-app --mount type=volume,src=miweb,dst=/usr/local/apache2/htdocs -p 8080:80 httpd:2.4ción -s nos muestra el tamaño del contenedor
+# La opción -s nos muestra el tamaño del contenedor
 # indicando el tamaño de la capa R/W del contenedor y
 # el tamaño (virtual) del FS de la imagen usada
 docker ps -a -s
@@ -341,7 +341,7 @@ Cuando borramos un contenedor, esta capa R/W desaparece, se perderían los datos
 ## GESTIÓN DE IMÁGENES
 * Buscar imágnes en Docker Hub:
 ```bash
-docker docker run -d --name my-apache-app --mount type=volume,src=miweb,dst=/usr/local/apache2/htdocs -p 8080:80 httpd:2.4search nginx
+docker search nginx
 
 # Si queremos ver lso posibles filtros
 docker searhc --help
@@ -349,13 +349,13 @@ docker searhc --help
 
 * Para borrar una imagen que ya no vayamos a usar:
 ```bash
-# OJO! docker run -d --name my-apache-app --mount type=volume,src=miweb,dst=/usr/local/apache2/htdocs -p 8080:80 httpd:2.4La imagen no se podrá borrar mientras exista algun conenedor creado a partir de ella
+# OJO! La imagen no se podrá borrar mientras exista algun conenedor creado a partir de ella
 docker rmi hello-world
 ```
 
 * Ver la información detallada de una imagen, como su identificador, puertos que utiliza, arquitectura, SO, variables de entorno, el comando por defecto, las distintas capas...
 ```bash
-docker docker run -d --name my-apache-app --mount type=volume,src=miweb,dst=/usr/local/apache2/htdocs -p 8080:80 httpd:2.4inspect nginx:stable
+docker inspect nginx:stable
 ```
 
 ## DOCKER HUB
@@ -383,7 +383,7 @@ Los volúmenes se pueden montar simultaneamente en diferentes contenedores (alma
 Como la información persiste al borrar el contenedor, podemos usar esa información para que sea utilizada por otro contenedor que creemos en el futuro. Además, gracias a esto son muy útiles para realizar copias de seguridad o migrar datos.
 
 ```bash
-# Dos pdocker run -d --name my-apache-app --mount type=volume,src=miweb,dst=/usr/local/apache2/htdocs -p 8080:80 httpd:2.4osibles formas de asociar un Volumen a un contenedor:
+# Dos posibles formas de asociar un Volumen a un contenedor:
 -v miweb:/usr/local/apache2/htdocs:ro
 
 # ó
@@ -399,7 +399,7 @@ En este caso, no se gestionan desde el cliente Docker. Y se puede cambiar su con
 Son útiles cuando queremos compartir archivos de configuración o código fuente en nuestro contenedor.
 
 ```bash
-# Dos pdocker run -d --name my-apache-app --mount type=volume,src=miweb,dst=/usr/local/apache2/htdocs -p 8080:80 httpd:2.4osibles formas de asociar un Bind Mount a un contenedor:
+# Dos posibles formas de asociar un Bind Mount a un contenedor:
 -v /opt/web:/usr/local/apache2/htdocs:ro
 
 # ó
@@ -410,7 +410,7 @@ Son útiles cuando queremos compartir archivos de configuración o código fuent
 Todos los subcomandos de acciones con Volúmenes, estan bajo el bloque `docker volume`. Por ejemplo:
 
 ```bash
-# Para docker run -d --name my-apache-app --mount type=volume,src=miweb,dst=/usr/local/apache2/htdocs -p 8080:80 httpd:2.4crear un volumen:
+# Para crear un volumen:
 docker volume create mivolumen
 
 # Para borrar un volumen:
@@ -425,7 +425,7 @@ docker volume inspect mivolumen
 
 Para asociar un contenedor a un volumen que hayamos creado, un comando de ejemplo sería el siguiente. Aunque igualmente, si indicamos un volumen que no se haya creado previamente, docker lo creará en este momento:
 ```bash
-docker run -d --name my-apache-app --mount type=volume,src=miweb,dst=/usr/local/apache2/htdocs -p 8080:80 httpd:2.4
+
 ```
 Podemos comprobar el acceso al servidor web usando el navegador web o desde la consola, usando el comando `curl`:
 ```bash
